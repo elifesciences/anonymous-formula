@@ -1,0 +1,11 @@
+base:
+    '*':
+        - elife.base
+        - elife.deploy-user
+        - elife.known-hosts
+        - elife.time-correction
+        - elife.security
+        - elife.logging
+        - elife.daily-system-updates
+        - elife.swapspace
+        - anonymous
