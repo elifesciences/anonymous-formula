@@ -1,10 +1,10 @@
 builder-project-aws-credentials:
     file.managed:
-        - name: /home/{{ pillar.elife.deploy_user }}/.aws/credentials
+        - name: /home/{{ pillar.elife.deploy_user.username }}/.aws/credentials
         - source: salt://anonymous/config/home-deploy-user-.aws-credentials
         - template: jinja
-        - user: {{ pillar.elife.deploy_user }}
-        - group: {{ pillar.elife.deploy_user }}
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
         - makedirs: True
 
 builder-project:
@@ -18,8 +18,8 @@ builder-project:
 
     file.directory:
         - name: /srv/builder
-        - user: {{ pillar.elife.deploy_user }}
-        - group: {{ pillar.elife.deploy_user }}
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
         - recurse:
             - user
             - group
@@ -29,7 +29,7 @@ builder-project:
     cmd.run:
         - name: ./update.sh --exclude virtualbox vagrant
         - cwd: /srv/builder
-        - user: {{ pillar.elife.deploy_user }}
+        - user: {{ pillar.elife.deploy_user.username }}
         - require:
             - file: builder-project
             - file: builder-project-aws-credentials
@@ -38,7 +38,7 @@ builder-settings:
     file.managed:
         - name: /srv/builder/settings.yml
         - source: salt://anonymous/config/srv-builder-settings.yml
-        - user: {{ pillar.elife.deploy_user }}
-        - group: {{ pillar.elife.deploy_user }}
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
         - require:
             - cmd: builder-project
