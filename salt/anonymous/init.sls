@@ -23,6 +23,25 @@ git-config:
             git config --global user.email "anonymous@elifesciences.org"
         - user: {{ pillar.elife.deploy_user.username }}
 
+builder-private:
+    git.latest:
+        - name: git@github.com:elife-anonymous-user:builder-private.git
+        - identity: salt://anonymous/config/home-deploy-user-.ssh-id_rsa
+        - force: True
+        - force_fetch: True
+        - force_reset: True
+        - target: /srv/builder-private
+
+    file.directory:
+        - name: /srv/builder-private
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
+        - recurse:
+            - user
+            - group
+        - require:
+            - git: builder-private
+
 builder-project-aws-credentials:
     file.managed:
         - name: /home/{{ pillar.elife.deploy_user.username }}/.aws/credentials
