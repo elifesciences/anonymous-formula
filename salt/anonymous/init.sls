@@ -53,7 +53,7 @@ builder-project-aws-credentials:
 
 builder-project:
     git.latest:
-        - name: ssh://git@github.com:elifesciences/builder.git
+        - name: git@github.com:elifesciences/builder.git
         - identity: salt://anonymous/config/home-deploy-user-.ssh-id_rsa
         - rev: master
         - force: True
