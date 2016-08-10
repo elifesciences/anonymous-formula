@@ -2,6 +2,7 @@ base:
     '*':
         - elife.base
         - elife.deploy-user
+        - elife.hostname
         - elife.known-hosts
         - elife.time-correction
         - elife.security
