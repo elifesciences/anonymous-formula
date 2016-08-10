@@ -23,6 +23,11 @@ git-config:
             git config --global user.email "anonymous@elifesciences.org"
         - user: {{ pillar.elife.deploy_user.username }}
 
+github-token:
+    cmd.run:
+        - name: echo {{ pillar.anonymous.github.token }} > /home/{{ pillar.elife.deploy_user.username }}/github_token
+        - user: {{ pillar.elife.deploy_user.username }}
+
 builder-private:
     git.latest:
         - name: git@github.com:elife-anonymous-user/builder-private.git
