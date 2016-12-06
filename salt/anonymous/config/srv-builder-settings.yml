@@ -1,3 +1,4 @@
 write-keypairs-to-s3: False
+write-context-to-s3: False
 project-locations:
     - ./projects/continuum.yaml
