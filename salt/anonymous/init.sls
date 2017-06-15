@@ -56,6 +56,12 @@ builder-project-aws-credentials:
         - group: {{ pillar.elife.deploy_user.username }}
         - makedirs: True
 
+builder-project-dependencies:
+    pkg.installed:
+        - pkgs:
+            - make
+
+
 builder-project:
     git.latest:
         - name: git@github.com:elifesciences/builder.git
@@ -65,6 +71,8 @@ builder-project:
         - force_fetch: True
         - force_reset: True
         - target: /srv/builder
+        - require:
+            - builder-project-dependencies
 
     file.directory:
         - name: /srv/builder
@@ -77,7 +85,7 @@ builder-project:
             - git: builder-project
 
     cmd.run:
-        - name: ./update.sh --exclude virtualbox vagrant
+        - name: ./update.sh --exclude virtualbox vagrant ssh-agent
         - cwd: /srv/builder
         - user: {{ pillar.elife.deploy_user.username }}
         - require:
