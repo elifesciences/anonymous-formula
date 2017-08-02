@@ -9,4 +9,8 @@ base:
         - elife.logging
         - elife.daily-system-updates
         - elife.swapspace
+        - elife.php7
+        - elife.composer
+        - elife.yamldiff
         - anonymous
+        - elife.aws-cli
