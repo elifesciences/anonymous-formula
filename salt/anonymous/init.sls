@@ -32,7 +32,7 @@ builder-private:
     git.latest:
         - name: git@github.com:elife-anonymous-user/builder-private.git
         - identity: salt://anonymous/config/home-deploy-user-.ssh-id_rsa
-        - force: True
+        - force_clone: True
         - force_fetch: True
         - force_reset: True
         - target: /srv/builder-private
@@ -67,7 +67,7 @@ builder-project:
         - name: git@github.com:elifesciences/builder.git
         - identity: salt://anonymous/config/home-deploy-user-.ssh-id_rsa
         - rev: master
-        - force: True
+        - force_clone: True
         - force_fetch: True
         - force_reset: True
         - target: /srv/builder
